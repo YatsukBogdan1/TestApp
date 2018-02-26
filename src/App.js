@@ -4,12 +4,22 @@ import styled, { keyframes } from 'styled-components'
 import { setTablesInfo } from './actions'
 import uuid from 'uuid'
 
-const types = [
-  'Poker',
-  'Bridge',
-  'BlackJack',
-  'Ruletka'
-]
+const types = [{
+  name: 'Poker',
+  image: 'https://fakty.ictv.ua/wp-content/uploads/2017/12/18/3b7803e21f984c8096e7875dae2bcc9d-e1513608145381.jpg'
+},
+{
+  name: 'Bridge',
+  image: 'http://www.adultcenter.org/images/348780732553535c96dda6.jpg'
+},
+{
+  name: 'BlackJack',
+  image: 'https://www.pix123.com/bettingpro//201509/Sep16/1-16092015105447.jpg'
+},
+{
+  name: 'Ruletka',
+  image: 'http://cenznet.com/wp-content/uploads/2017/09/Рулетка-1-800x445.jpg'
+}]
 
 const randomInt = (to) => Math.floor(Math.random() * to)
 
@@ -37,6 +47,11 @@ const blinking = keyframes`
   to {
     background-color: red;
   }
+`
+
+const Image = styled.img`
+  width: 100px;
+  height: 100px;
 `
 
 class App extends Component {
@@ -88,7 +103,9 @@ class App extends Component {
         {tables.map(table => 
           <TableRow warning={table.warning}>
             <TableCell flex={2}>{table.id}</TableCell>
-            <TableCell flex={1}>{table.type}</TableCell>
+            <TableCell flex={1}>
+              <Image src={table.type.image} />
+            </TableCell>
             <TableCell flex={1}>{table.name}</TableCell>
             <TableCell flex={1}>{table.maxPlayers}</TableCell>
             <TableCell flex={1}>{table.players}</TableCell>
